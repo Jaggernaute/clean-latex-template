@@ -1,4 +1,4 @@
-# Calculabilité (L2 ISTN)
+# Clean LaTeX Template
 
 le PDF est disponible ici :
 https://jaggernaute.github.io/[repo\]/thesis.pdf
