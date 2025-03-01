@@ -11,6 +11,26 @@ $pdf_mode = 1; # use pdfTeX
 ## %O and %S will forward Options and the Source file, respectively, given to latexmk.
 set_tex_cmds("--shell-escape --file-line-error --halt-on-error %O %S");
 
+# This shows how to use the glossaries package
+# (http://www.ctan.org/pkg/glossaries) and the glossaries-extra package
+# (http://www.ctan.org/pkg/glossaries-extra) with latexmk.
+
+# N.B. There is also the OBSOLETE glossary package
+# (http://www.ctan.org/pkg/glossary), which has some differences.  See item 2.
+
+# 1. If you use the glossaries or the glossaries-extra package, then you can use:
+
+   add_cus_dep( 'acn', 'acr', 0, 'makeglossaries' );
+   add_cus_dep( 'glo', 'gls', 0, 'makeglossaries' );
+   $clean_ext .= " acr acn alg glo gls glg";
+
+   sub makeglossaries {
+        my ($base_name, $path) = fileparse( $_[0] );
+        my @args = ( "-q", "-d", $path, $base_name );
+        if ($silent) { unshift @args, "-q"; }
+        return system "makeglossaries", "-d", $path, $base_name; 
+    }
+
 ## Change default `biber` call to help catch errors faster/clearer. See
 ## https://www.semipol.de/posts/2018/06/latex-best-practices-lessons-learned-from-writing-a-phd-thesis/
 $biber = "biber --validate-datamodel %O %S";
