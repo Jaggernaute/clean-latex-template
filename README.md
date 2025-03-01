@@ -2,6 +2,7 @@
 
 le PDF est disponible ici :
 https://jaggernaute.github.io/[repo\]/thesis.pdf
+https://jaggernaute.github.io/clean-latex-template/thesis.pdf
 
 ## Description
 
